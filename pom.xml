@@ -16,7 +16,7 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<cxf.version>3.3.5</cxf.version>
+		<cxf.version>3.3.6</cxf.version>
 	</properties>
 
 	<dependencies>
