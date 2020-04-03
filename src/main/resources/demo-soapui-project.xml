@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="b250df5b-48eb-4dce-af09-55c4b161abbe" activeEnvironment="Default" name="Demo" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="ea871d75-b8f6-4b72-8a1d-fe56e9b6fb28" wsaVersion="NONE" name="LogServiceImplServiceSoapBinding" type="wsdl" bindingName="{http://webservice.cfxbugexample.markerud.com/}LogServiceImplServiceSoapBinding" soapVersion="1_2" anonymous="optional" definition="http://localhost:8080/services/I_Demo_Log?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/services/I_Demo_Log?wsdl"><con:part><con:url>http://localhost:8080/services/I_Demo_Log?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="LogServiceImplService" targetNamespace="http://webservice.cfxbugexample.markerud.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservice.cfxbugexample.markerud.com/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns3="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://ws.markerud.com/example/DemoLogService/v1.0">
+  <wsdl:import location="http://localhost:8080/services/I_Demo_Log?wsdl=I_Demo_Log.wsdl" namespace="http://ws.markerud.com/example/DemoLogService/v1.0"></wsdl:import>
+  <wsdl:binding name="LogServiceImplServiceSoapBinding" type="ns1:I_Demo_Log">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="LogMessage">
+      <soap12:operation soapAction="http://ws.markerud.com/example/DemoLogService/v1.0#LogMessage" style="document"/>
+      <wsdl:input name="LogMessage">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="LogMessageResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="MyBusinessException">
+        <soap12:fault name="MyBusinessException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LogServiceImplService">
+    <wsdl:port binding="tns:LogServiceImplServiceSoapBinding" name="LogServiceImplPort">
+      <soap12:address location="http://localhost:8080/services/I_Demo_Log"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/services/I_Demo_Log?wsdl=I_Demo_Log.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="I_Demo_Log" targetNamespace="http://ws.markerud.com/example/DemoLogService/v1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns2="http://ws.markerud.com/error/v1.0" xmlns:ns1="http://ws.markerud.com/example/DemoLogService/v1.0">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://ws.markerud.com/example/DemoLogService/v1.0" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://ws.markerud.com/example/DemoLogService/v1.0">
+      <xs:element name="Error">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element default="" form="unqualified" name="MessageID" type="xs:string"/>
+            <xs:element form="unqualified" name="Timestamp" type="xs:dateTime"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="LogMessageRequest">
+        <xs:sequence>
+          <xs:element name="Message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="LogMessage" nillable="true" type="LogMessageRequest"/>
+    </xs:schema>
+    <xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.markerud.com/error/v1.0" xmlns:tns="http://ws.markerud.com/error/v1.0">
+      <xsd:element name="Error" nillable="true"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="LogMessage">
+    <wsdl:part element="ns1:LogMessage" name="parameter"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="MyBusinessException">
+    <wsdl:part element="ns2:Error" name="MyBusinessException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="LogMessageResponse"></wsdl:message>
+  <wsdl:portType name="I_Demo_Log">
+    <wsdl:operation name="LogMessage">
+      <wsdl:input message="ns1:LogMessage" name="LogMessage"></wsdl:input>
+      <wsdl:output message="ns1:LogMessageResponse" name="LogMessageResponse"></wsdl:output>
+      <wsdl:fault message="ns1:MyBusinessException" name="MyBusinessException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/services/I_Demo_Log</con:endpoint></con:endpoints><con:operation id="607df61d-07ec-4fe9-8b63-96de6cfd08a8" isOneWay="false" action="http://ws.markerud.com/example/DemoLogService/v1.0#LogMessage" name="LogMessage" bindingOperationName="LogMessage" type="Request-Response" outputName="LogMessageResponse" inputName="LogMessage" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fc5dda27-31f8-4019-9c1f-61c744665424" name="Correct failure shows error object"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/I_Demo_Log</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:v1="http://ws.markerud.com/example/DemoLogService/v1.0">
+   <soap:Header/>
+   <soap:Body>
+      
+   <v1:LogMessag>
+         <v1:Message>Hello World</v1:Message>
+      </v1:LogMessag>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://webservice.cfxbugexample.markerud.com/I_Demo_Log/LogMessage"/><con:wsrmConfig version="1.2"/></con:call><con:call id="20c2a947-955e-45d4-85f8-a6ccacc13ec9" name="Failure with NPE hides business error object"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Content-Type" value="application/soap+xml;charset=UTF-8" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/I_Demo_Log</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:v1="http://ws.markerud.com/example/DemoLogService/v1.0">
+   <soap:Header/>
+   <soap:Body>
+      
+   <v1:LogMessag>
+         <v1:Message>Hello World</v1:Message>
+      </v1:LogMessag>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://webservice.cfxbugexample.markerud.com/I_Demo_Log/LogMessage"/><con:wsrmConfig version="1.2"/></con:call><con:call id="9f3a4d91-c8ee-49c9-a573-58b049723db5" name="Success"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/I_Demo_Log</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:v1="http://ws.markerud.com/example/DemoLogService/v1.0">
+   <soap:Header/>
+   <soap:Body>
+      <v1:LogMessage>
+         <v1:Message>Hello World</v1:Message>
+      </v1:LogMessage>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://webservice.cfxbugexample.markerud.com/I_Demo_Log/LogMessage"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
